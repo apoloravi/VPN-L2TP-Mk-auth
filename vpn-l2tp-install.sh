@@ -68,7 +68,16 @@ mtu 1410
 mru 1410
 EOF
 
-echo "$VPN_USER l2tp-vpn $VPN_PASS *" > /etc/ppp/chap-secrets
+# Gerando chap-secrets com múltiplos usuários
+cat > /etc/ppp/chap-secrets <<EOF
+# Secrets for authentication using CHAP
+# client        server  secret                  IP addresses
+EOF
+
+for i in $(seq -w 1 40); do
+    IP="172.20.1.$((i+1))"
+    printf "mkt%s\t*\t102030\t\t%s\n" "$i" "$IP" >> /etc/ppp/chap-secrets
+done
 
 echo "Habilitando encaminhamento de IP..."
 sysctl -w net.ipv4.ip_forward=1
@@ -96,7 +105,6 @@ else
 fi
 
 echo "✅ VPN L2TP/IPSec instalada com sucesso!"
-echo "Usuário: $VPN_USER"
-echo "Senha: $VPN_PASS"
+echo "Usuários gerados: mkt01 até mkt40"
+echo "Senha: 102030"
 echo "PSK: $VPN_PSK"
-
