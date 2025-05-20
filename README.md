@@ -33,7 +33,7 @@
 
 ## 🚀 Instalação
 
-# Caso o Git não esteja instalado use o comendo 
+## Caso o Git não esteja instalado use o comendo 
 ```bash
 apt install git
 ```
