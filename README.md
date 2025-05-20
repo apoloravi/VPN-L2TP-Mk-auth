@@ -33,7 +33,11 @@
 
 ## 🚀 Instalação
 
-Siga os comandos abaixo para instalar:
+# Caso o Git não esteja instalado use o comendo 
+```bash
+apt install git
+```
+#Siga os comandos abaixo para instalar:
 
 ```bash
 git clone https://github.com/apoloravi/VPN-L2TP-Mk-auth.git
